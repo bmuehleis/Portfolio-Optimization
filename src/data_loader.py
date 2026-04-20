@@ -66,7 +66,7 @@ def _rename_columns(df: pd.DataFrame) -> pd.DataFrame:
         # Example: aapl_close → aapl
         if "_" in col:
             parts = col.split("_")
-            new_cols[col] = parts[0] + "_" + parts[-1]
+            new_cols[col] = parts[0]
         else:
             new_cols[col] = col
 
@@ -74,7 +74,6 @@ def _rename_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 #Initialize Dataframe for global usage
 def init_dataframe(filepath: str):
-    global returns_df
     df = _load_csv(filepath)
     df = _set_datetime_index(df)
     df = _rename_columns(df)
@@ -82,4 +81,4 @@ def init_dataframe(filepath: str):
     return_cols, price_cols = _classify_columns(df)
     returns_df = _compute_returns(df, return_cols, price_cols)
 
-    returns_df = df
+    return returns_df
