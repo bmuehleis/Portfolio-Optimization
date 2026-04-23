@@ -5,6 +5,7 @@
 import pandas as pd
 from calculations import compute_log_returns, compute_linear_returns
 
+
 #Column-Name Aliases
 
 _DATE_ALIASES: list[str] = [
@@ -124,6 +125,7 @@ def init_dataframe(
     return_type: str = "linear",
 ) -> pd.DataFrame:
     #Load a CSV and return a clean DataFrame of **returns** indexed by date.
+
     """
     Parameters
     ----------
@@ -141,6 +143,7 @@ def init_dataframe(
         Columns are clean ticker symbols; index is a DatetimeIndex named 'date'.
         NaN rows are dropped.
     """
+
     if return_type not in ("linear", "log"):
         raise ValueError(f"return_type must be 'linear' or 'log', got '{return_type}'.")
  
@@ -150,7 +153,7 @@ def init_dataframe(
     return_cols, price_cols, unknown_cols = _classify_columns(df)
  
     if return_cols:
-        # CSV already has returns -> use them directly
+        #CSV already has returns -> use them directly
         result = df[return_cols].copy()
         result = _rename_to_tickers(result)
         return result.dropna()
@@ -165,7 +168,7 @@ def init_dataframe(
  
     prices = df[candidate_price_cols].copy()
  
-    # Route to calculations.py (Numba-accelerated)
+    #Route to calculations.py (Numba-accelerated)
     if return_type == "log":
         returns = compute_log_returns(prices)
     else:
@@ -185,6 +188,7 @@ def load_prices(filepath: str) -> pd.DataFrame:
     pd.DataFrame
         Columns are clean ticker symbols; index is a DatetimeIndex named 'date'.
     """
+    
     df = _load_csv(filepath)
     df = _set_datetime_index(df)
  
