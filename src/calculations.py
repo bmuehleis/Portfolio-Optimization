@@ -1,6 +1,6 @@
-# calculations.py
-# Core numerical calculations for portfolio optimization.
-# Heavy loops are JIT-compiled with Numba (@njit) for near-C performance.
+#calculations.py
+#Core numerical calculations for portfolio optimization.
+#Heavy loops are JIT-compiled with Numba (@njit) for near-C performance.
 
 import numpy as np
 import pandas as pd
@@ -241,5 +241,5 @@ def compute_mean_returns(df: pd.DataFrame) -> pd.Series:
     pd.Series
         Mean returns indexed by ticker.
     """
-    
+
     return df.mean()

@@ -1,4 +1,4 @@
-#optimizing logic using cvxpy
+#optimizer.py
 
 import cvxpy as cp
 import numpy as np
