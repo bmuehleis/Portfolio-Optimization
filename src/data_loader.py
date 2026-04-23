@@ -1,6 +1,6 @@
-# data_loader.py
-# Dynamically loads a CSV file containing either prices or returns for multiple tickers.
-# Routes to calculations.py for log or linear return computation when only prices are given.
+#data_loader.py
+#Dynamically loads a CSV file containing either prices or returns for multiple tickers.
+#Routes to calculations.py for log or linear return computation when only prices are given.
 
 import pandas as pd
 from calculations import compute_log_returns, compute_linear_returns
@@ -188,7 +188,7 @@ def load_prices(filepath: str) -> pd.DataFrame:
     pd.DataFrame
         Columns are clean ticker symbols; index is a DatetimeIndex named 'date'.
     """
-    
+
     df = _load_csv(filepath)
     df = _set_datetime_index(df)
  
